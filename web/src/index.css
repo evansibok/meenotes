@@ -10,10 +10,14 @@ body {
   padding: 1em 5vw;
 }
 
+.site-header h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .site-nav {
   display: flex;
   align-items: center;
-  background: rebeccapurple;
 }
 
 .site-nav ul li {
@@ -22,6 +26,6 @@ body {
 
 .site-nav ul li a {
   color: inherit;
-  margin-left: 1em;
+  margin-left: 1.5em;
   text-decoration: none;
 }

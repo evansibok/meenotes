@@ -22,6 +22,7 @@ model User {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
   notes     Note[]
+  songs     Song[]
 
   @@map("users")
 }
@@ -36,4 +37,16 @@ model Note {
 
   @@unique([authorId])
   @@map("notes")
+}
+
+model Song {
+  id        Int      @id @default(autoincrement())
+  title     String
+  fan       User     @relation(fields: [fanId], references: [id])
+  fanId     Int      @map("fan_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([fanId])
+  @@map("songs")
 }

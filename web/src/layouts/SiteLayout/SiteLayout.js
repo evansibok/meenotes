@@ -4,7 +4,9 @@ const SiteLayout = ({ children }) => {
   return (
     <>
       <header className="site-header">
-        <h1>Logo</h1>
+        <h1>
+          <Link to={routes.landing()}>MeeNotes</Link>
+        </h1>
 
         <nav className="site-nav">
           <ul>
