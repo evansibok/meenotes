@@ -1,11 +1,11 @@
 import { render } from '@redwoodjs/testing/web'
 
-import LandingPagePage from './LandingPagePage'
+import LandingPage from './LandingPage'
 
-describe('LandingPagePage', () => {
+describe('LandingPage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<LandingPagePage />)
+      render(<LandingPage />)
     }).not.toThrow()
   })
 })
