@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+}
+
+.site-header {
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  color: #FFF;
+  padding: 1em 5vw;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  background: rebeccapurple;
+}
+
+.site-nav ul li {
+  display: inline-flex;
+}
+
+.site-nav ul li a {
+  color: inherit;
+  margin-left: 1em;
+  text-decoration: none;
+}
