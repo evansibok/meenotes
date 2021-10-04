@@ -12,41 +12,38 @@ generator client {
 // to create migrations for them and apply to your dev DB.
 // TODO: Please remove the following example:
 model User {
-  id        Int      @id @default(autoincrement())
-  firstName String   @map("first_name")
-  lastName  String   @map("last_name")
+  id        String   @id @default(uuid())
+  firstName String
+  lastName  String
   email     String   @unique
   username  String   @unique
   image     String
   password  String
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   notes     Note[]
-  songs     Song[]
 
   @@map("users")
 }
 
 model Note {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   content   String
   author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int      @map("author_id")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([authorId])
   @@map("notes")
 }
 
 model Song {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   title     String
-  fan       User     @relation(fields: [fanId], references: [id])
-  fanId     Int      @map("fan_id")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  singer    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  @@unique([fanId])
   @@map("songs")
 }

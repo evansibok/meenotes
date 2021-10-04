@@ -2,6 +2,9 @@
 const { PrismaClient } = require('@prisma/client')
 const dotenv = require('dotenv')
 
+import songData from './songs'
+import userData from './users'
+
 dotenv.config()
 const db = new PrismaClient()
 
@@ -17,23 +20,39 @@ async function main() {
   console.warn('Please define your seed data.')
 
   // // Change to match your data model and seeding needs
-  // const data = [
-  //   { name: 'alice', email: 'alice@example.com' },
-  //   { name: 'mark', email: 'mark@example.com' },
-  //   { name: 'jackie', email: 'jackie@example.com' },
-  //   { name: 'bob', email: 'bob@example.com' },
-  // ]
 
   // // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
   // // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
-  // return Promise.all(
-  //   data.map(async (user) => {
-  //     const record = await db.user.create({
-  //       data: { name: user.name, email: user.email },
-  //     })
-  //     console.log(record)
-  //   })
-  // )
+  return Promise.all([
+    userData.map(async (user) => {
+      const record = await db.user.create({
+        data: {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          username: user.username,
+          image: user.image,
+          password: user.password,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt,
+        },
+      })
+      console.log('user record', record)
+    }),
+    songData.map(async (song) => {
+      const record = await db.song.create({
+        data: {
+          id: song.id,
+          title: song.title,
+          singer: song.singer,
+          createdAt: song.createdAt,
+          updatedAt: song.updatedAt,
+        },
+      })
+      console.log('song record', record)
+    }),
+  ])
 }
 
 main()
