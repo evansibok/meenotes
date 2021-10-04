@@ -2,8 +2,8 @@
 const { PrismaClient } = require('@prisma/client')
 const dotenv = require('dotenv')
 
-import songData from './songs'
-import userData from './users'
+import { users } from './users'
+import { songs } from './songs'
 
 dotenv.config()
 const db = new PrismaClient()
@@ -24,31 +24,15 @@ async function main() {
   // // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
   // // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
   return Promise.all([
-    userData.map(async (user) => {
+    users.map(async (user) => {
       const record = await db.user.create({
-        data: {
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          username: user.username,
-          image: user.image,
-          password: user.password,
-          createdAt: user.createdAt,
-          updatedAt: user.updatedAt,
-        },
+        data: user,
       })
       console.log('user record', record)
     }),
-    songData.map(async (song) => {
+    songs.map(async (song) => {
       const record = await db.song.create({
-        data: {
-          id: song.id,
-          title: song.title,
-          singer: song.singer,
-          createdAt: song.createdAt,
-          updatedAt: song.updatedAt,
-        },
+        data: song,
       })
       console.log('song record', record)
     }),

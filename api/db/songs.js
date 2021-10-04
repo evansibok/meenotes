@@ -1,4 +1,4 @@
-export default [
+export const songs = [
   {
     id: '923f454f-fc35-4e0e-baed-0ddf20e36f61',
     title: 'Pellentesque at nulla.',

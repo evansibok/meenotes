@@ -1,4 +1,4 @@
-export default [
+export const users = [
   {
     id: '7e89e36f-d550-4201-b0ae-8b7f60c54559',
     firstName: 'Donnie',
